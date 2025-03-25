@@ -1,5 +1,7 @@
 import "../scss/App.scss";
 import { useState } from "react";
+import Header from "./Header";
+import Board from "./Board";
 
 /*
 Al arrancar la página
@@ -34,40 +36,43 @@ Funcionalidades
         
 */
 
-
 function App() {
-
-  const [groguPosition, setGroguPosition] = useState("");
+  const [groguPosition, setGroguPosition] = useState(0);
   const [cookies, setCookies] = useState(["🍪", "🍪", "🍪"]);
   const [eggs, setEggs] = useState(["🥚", "🥚", "🥚"]);
-  const [frogs, setFrogs] = useState(["🐸", "🐸", "🐸"])
-  const [dice, setDice] = useState(0)
-  const [state, setState] = useState(true)
+  const [frogs, setFrogs] = useState(["🐸", "🐸", "🐸"]);
+  const [dice, setDice] = useState(null);
+  const [gameStatus, setGameStatus] = useState("En curso");
 
-
-  
+  const rollDice = () => {
+    const randomNumber = Math.floor(Math.random() * (5 - 1) + 1);
+    if (randomNumber === 4) {
+      setGroguPosition(groguPosition + 1);
+      setGameStatus(`Ha salido un ${randomNumber}: Grogu avanza`);
+    } else if (randomNumber === 1) {
+      setCookies(cookies.slice(0, -1));
+      setGameStatus(
+        `Ha salido un ${randomNumber}: Se ha descargado una galleta`
+      );
+    } else if (randomNumber === 2) {
+      setEggs(eggs.slice(0, -1));
+      setGameStatus(`Ha salido un ${randomNumber}: Se ha descargado un huevo`);
+    } else if (randomNumber === 3) {
+      setFrogs(frogs.slice(0, -1));
+      setGameStatus(`Ha salido un ${randomNumber}: Se ha descargado una rana`);
+    }
+  };
 
   return (
     <div className="page">
-      <header>
-        <h1>¡Cuidado con Grogu!</h1>
-      </header>
+      <Header />
       <main className="page">
-        <section className="board">
-          <div className="cell">
-            <div className="grogu">👣</div>
-          </div>
-          <div className="cell"></div>
-          <div className="cell"></div>
-          <div className="cell"></div>
-          <div className="cell"></div>
-          <div className="cell"></div>
-          <div className="cell"></div>
-        </section>
-
+        <Board />
         <section>
-          <button className="dice">Lanzar Dado</button>
-          <div className="game-status">En curso</div>
+          <button className="dice" onClick={rollDice}>
+            Lanzar Dado
+          </button>
+          <div className="game-status">{gameStatus}</div>
         </section>
 
         <section className="goods-container">
