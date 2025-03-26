@@ -2,6 +2,7 @@ import "../scss/App.scss";
 import { useState } from "react";
 import Header from "./Header";
 import Board from "./Board";
+import Dice from "./Dice";
 
 /*
 Al arrancar la página
@@ -68,10 +69,9 @@ function App() {
       <Header />
       <main className="page">
         <Board />
-        <section>
-          <button className="dice" onClick={rollDice}>
-            Lanzar Dado
-          </button>
+        <section className="results">
+          <Dice onClickDice={rollDice} />
+
           <div className="game-status">{gameStatus}</div>
         </section>
 
