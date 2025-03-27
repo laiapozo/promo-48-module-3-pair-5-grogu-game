@@ -42,25 +42,25 @@ function App() {
   const [cookies, setCookies] = useState(["🍪", "🍪", "🍪"]);
   const [eggs, setEggs] = useState(["🥚", "🥚", "🥚"]);
   const [frogs, setFrogs] = useState(["🐸", "🐸", "🐸"]);
-  // const [dice, setDice] = useState(null);
+  const [dice, setDice] = useState(null);
   const [gameStatus, setGameStatus] = useState("En curso");
 
   const rollDice = () => {
-    const randomNumber = Math.floor(Math.random() * (5 - 1) + 1);
-    if (randomNumber === 4) {
+    setDice(Math.floor(Math.random() * (5 - 1) + 1));
+    if (dice === 4) {
       setGroguPosition(groguPosition + 1);
-      setGameStatus(`Ha salido un ${randomNumber}: Grogu avanza`);
-    } else if (randomNumber === 1) {
+      setGameStatus(`Ha salido un ${dice}: Grogu avanza`);
+    } else if (dice === 1) {
       setCookies(cookies.slice(0, -1));
       setGameStatus(
-        `Ha salido un ${randomNumber}: Se ha descargado una galleta`
+        `Ha salido un ${dice}: Se ha descargado una galleta`
       );
-    } else if (randomNumber === 2) {
+    } else if (dice === 2) {
       setEggs(eggs.slice(0, -1));
-      setGameStatus(`Ha salido un ${randomNumber}: Se ha descargado un huevo`);
-    } else if (randomNumber === 3) {
+      setGameStatus(`Ha salido un ${dice}: Se ha descargado un huevo`);
+    } else if (dice === 3) {
       setFrogs(frogs.slice(0, -1));
-      setGameStatus(`Ha salido un ${randomNumber}: Se ha descargado una rana`);
+      setGameStatus(`Ha salido un ${dice}: Se ha descargado una rana`);
     }
   };
 
