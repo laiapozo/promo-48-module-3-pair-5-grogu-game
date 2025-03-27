@@ -42,7 +42,7 @@ function App() {
   const [cookies, setCookies] = useState(["🍪", "🍪", "🍪"]);
   const [eggs, setEggs] = useState(["🥚", "🥚", "🥚"]);
   const [frogs, setFrogs] = useState(["🐸", "🐸", "🐸"]);
-  const [dice, setDice] = useState(null);
+  // const [dice, setDice] = useState(null);
   const [gameStatus, setGameStatus] = useState("En curso");
 
   const rollDice = () => {
@@ -68,7 +68,7 @@ function App() {
     <div className="page">
       <Header />
       <main className="page">
-        <Board />
+        <Board groguPosition={groguPosition} />
         <section className="results">
           <Dice onClickDice={rollDice} />
 
