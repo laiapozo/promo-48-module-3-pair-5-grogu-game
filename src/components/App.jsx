@@ -1,5 +1,5 @@
 import "../scss/App.scss";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Header from "./Header";
 import Board from "./Board";
 import Dice from "./Dice";
@@ -52,9 +52,7 @@ function App() {
       setGameStatus(`Ha salido un ${dice}: Grogu avanza`);
     } else if (dice === 1) {
       setCookies(cookies.slice(0, -1));
-      setGameStatus(
-        `Ha salido un ${dice}: Se ha descargado una galleta`
-      );
+      setGameStatus(`Ha salido un ${dice}: Se ha descargado una galleta`);
     } else if (dice === 2) {
       setEggs(eggs.slice(0, -1));
       setGameStatus(`Ha salido un ${dice}: Se ha descargado un huevo`);
@@ -63,6 +61,18 @@ function App() {
       setGameStatus(`Ha salido un ${dice}: Se ha descargado una rana`);
     }
   };
+
+  useEffect(() => {
+    if (groguPosition === 6) {
+      setGameStatus("¡¡Grogu se ha comido el cargamento!! Has perdido");
+    } else if (
+      cookies.length === 0 &&
+      eggs.length === 0 &&
+      frogs.length === 0
+    ) {
+      setGameStatus("¡Has ganado! Mando completa la misión");
+    }
+  }, [cookies, eggs, frogs, groguPosition]);
 
   return (
     <div className="page">
