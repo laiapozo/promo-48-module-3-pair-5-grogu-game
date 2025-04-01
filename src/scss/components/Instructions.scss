@@ -1,0 +1,9 @@
+.instructions {
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+}

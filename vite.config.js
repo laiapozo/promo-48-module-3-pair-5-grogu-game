@@ -8,4 +8,5 @@ export default defineConfig({
     open: true, // Abre automáticamente el navegador
   },
   plugins: [react()],
+  base: "/promo-48-module-3-pair-5-grogu-game/",
 });
