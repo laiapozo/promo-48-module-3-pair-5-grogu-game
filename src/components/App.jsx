@@ -7,6 +7,8 @@ import Dice from "./Dice";
 import Footer from "./Footer";
 import Instructions from "./Instructions";
 import Options from "./Options";
+import Form from "./Form";
+import GameStatus from "./GameStatus";
 
 function App() {
   const [groguPosition, setGroguPosition] = useState(0);
@@ -15,6 +17,7 @@ function App() {
   const [frogs, setFrogs] = useState(["🐸", "🐸", "🐸"]);
   const [dice, setDice] = useState(null);
   const [gameStatus, setGameStatus] = useState("En curso");
+  const [name, setName] = useState("");
 
   const rollDice = () => {
     setDice(Math.floor(Math.random() * (5 - 1) + 1));
@@ -45,6 +48,10 @@ function App() {
     }
   }, [cookies, eggs, frogs, groguPosition]);
 
+  const onChangeName = (value) => {
+    setName(value);
+  };
+
   return (
     <div className="page">
       <Header />
@@ -55,27 +62,29 @@ function App() {
             path="/"
             element={
               <>
+                <Form onChangeName={onChangeName} name={name} />
                 <Board groguPosition={groguPosition} />
                 <section className="results">
                   <Dice onClickDice={rollDice} />
 
-                  <div className="game-status">{gameStatus}</div>
+                  <GameStatus name={name} gameStatus={gameStatus} />
                 </section>
 
                 <section className="goods-container">
+                  <div className="goods-item">{cookies}</div>
+                  {/* <div className="goods-item">🍪</div>
                   <div className="goods-item">🍪</div>
-                  <div className="goods-item">🍪</div>
-                  <div className="goods-item">🍪</div>
+                  <div className="goods-item">🍪</div> */}
                 </section>
                 <section className="goods-container">
-                  <div className="goods-item">🥚</div>
-                  <div className="goods-item">🥚</div>
-                  <div className="goods-item">🥚</div>
+                  <div className="goods-item">{eggs}</div>
+                  {/* <div className="goods-item">🥚</div>
+                  <div className="goods-item">🥚</div> */}
                 </section>
                 <section className="goods-container">
-                  <div className="goods-item">🐸</div>
-                  <div className="goods-item">🐸</div>
-                  <div className="goods-item">🐸</div>
+                  <div className="goods-item">{frogs}</div>
+                  {/* <div className="goods-item">🐸</div>
+                  <div className="goods-item">🐸</div> */}
                 </section>
                 <section>
                   <button className="restart-button">Reiniciar Juego</button>
