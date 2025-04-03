@@ -1,5 +1,5 @@
-const GameStatus = ({ gameStatus, name }) => {
-  return <div className="game-status">{`${name} ${gameStatus} `}</div>;
+const GameStatus = ({ gameStatus }) => {
+  return <div className="game-status">{gameStatus}</div>;
 };
 
 export default GameStatus;

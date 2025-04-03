@@ -23,28 +23,28 @@ function App() {
     setDice(Math.floor(Math.random() * (5 - 1) + 1));
     if (dice === 4) {
       setGroguPosition(groguPosition + 1);
-      setGameStatus(`Ha salido un ${dice}: Grogu avanza`);
+      setGameStatus(`¡Atenta, ${name}! Ha salido un ${dice}: Grogu avanza`);
     } else if (dice === 1) {
       setCookies(cookies.slice(0, -1));
-      setGameStatus(`Ha salido un ${dice}: Se ha descargado una galleta`);
+      setGameStatus(`¡Bien hecho, ${name}! Ha salido un ${dice}: Se ha descargado una galleta`);
     } else if (dice === 2) {
       setEggs(eggs.slice(0, -1));
-      setGameStatus(`Ha salido un ${dice}: Se ha descargado un huevo`);
+      setGameStatus(`¡Bien hecho, ${name}! Ha salido un ${dice}: Se ha descargado un huevo`);
     } else if (dice === 3) {
       setFrogs(frogs.slice(0, -1));
-      setGameStatus(`Ha salido un ${dice}: Se ha descargado una rana`);
+      setGameStatus(`¡Bien hecho, ${name}! Ha salido un ${dice}: Se ha descargado una rana`);
     }
   };
 
   useEffect(() => {
     if (groguPosition === 6) {
-      setGameStatus("¡¡Grogu se ha comido el cargamento!! Has perdido");
+      setGameStatus(`¡Grogu se ha comido el cargamento! Has perdido, ${name}...`);
     } else if (
       cookies.length === 0 &&
       eggs.length === 0 &&
       frogs.length === 0
     ) {
-      setGameStatus("¡Has ganado! Mando completa la misión");
+      setGameStatus(`¡Has ganado, ${name}! Mando completa la misión.`);
     }
   }, [cookies, eggs, frogs, groguPosition]);
 
@@ -76,25 +76,17 @@ function App() {
                 <Board groguPosition={groguPosition} />
                 <section className="results">
                   <Dice onClickDice={rollDice} />
-
-                  <GameStatus name={name} gameStatus={gameStatus} />
+                  <GameStatus gameStatus={gameStatus} />
                 </section>
 
                 <section className="goods-container">
                   <div className="goods-item">{cookies}</div>
-                  {/* <div className="goods-item">🍪</div>
-                  <div className="goods-item">🍪</div>
-                  <div className="goods-item">🍪</div> */}
                 </section>
                 <section className="goods-container">
                   <div className="goods-item">{eggs}</div>
-                  {/* <div className="goods-item">🥚</div>
-                  <div className="goods-item">🥚</div> */}
                 </section>
                 <section className="goods-container">
                   <div className="goods-item">{frogs}</div>
-                  {/* <div className="goods-item">🐸</div>
-                  <div className="goods-item">🐸</div> */}
                 </section>
                 <section>
                   <button
