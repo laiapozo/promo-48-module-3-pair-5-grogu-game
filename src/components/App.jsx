@@ -52,6 +52,16 @@ function App() {
     setName(value);
   };
 
+  const handleResetButton = () => {
+    setGroguPosition(0);
+    setCookies(["🍪", "🍪", "🍪"]);
+    setEggs(["🥚", "🥚", "🥚"]);
+    setFrogs(["🐸", "🐸", "🐸"]);
+    setDice(null);
+    setGameStatus("En curso");
+    setName("");
+  };
+
   return (
     <div className="page">
       <Header />
@@ -87,7 +97,12 @@ function App() {
                   <div className="goods-item">🐸</div> */}
                 </section>
                 <section>
-                  <button className="restart-button">Reiniciar Juego</button>
+                  <button
+                    className="restart-button"
+                    onClick={handleResetButton}
+                  >
+                    Reiniciar Juego
+                  </button>
                 </section>
               </>
             }
